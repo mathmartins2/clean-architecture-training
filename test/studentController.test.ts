@@ -12,7 +12,13 @@ test('deve cadastrar um aluno', async () => {
     expect(response.data).toBe('Aluno criado com sucesso');
 });
 
+test('não deve cadastrar um aluno', async () => {
+    const response = await axios.post('http://localhost:3000/new-student', {});
+    expect(response.data.status).toBe(400);
+});
+
 test('deve buscar alunos cadastrados', async () => {
     const response = await axios.get('http://localhost:3000/students');
     expect(response.data).toContainEqual(student);
 });
+
